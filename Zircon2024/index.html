@@ -548,9 +548,105 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      指令支持
+      流水线阶段功能概要
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="流水线阶段功能概要">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if" class="md-nav__link">
+    <span class="md-ellipsis">
+      取指（IF）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pd" class="md-nav__link">
+    <span class="md-ellipsis">
+      预译码（PD）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      译码（DCD）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rnm" class="md-nav__link">
+    <span class="md-ellipsis">
+      重命名（RNM）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      分派（DSP）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is" class="md-nav__link">
+    <span class="md-ellipsis">
+      发射（IS）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rf" class="md-nav__link">
+    <span class="md-ellipsis">
+      读寄存器（RF）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ex" class="md-nav__link">
+    <span class="md-ellipsis">
+      执行（EX）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wb" class="md-nav__link">
+    <span class="md-ellipsis">
+      写回（WB）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rob" class="md-nav__link">
+    <span class="md-ellipsis">
+      重排序缓存（ROB）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -608,9 +704,105 @@
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
-      指令支持
+      流水线阶段功能概要
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="流水线阶段功能概要">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#if" class="md-nav__link">
+    <span class="md-ellipsis">
+      取指（IF）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pd" class="md-nav__link">
+    <span class="md-ellipsis">
+      预译码（PD）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      译码（DCD）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rnm" class="md-nav__link">
+    <span class="md-ellipsis">
+      重命名（RNM）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dsp" class="md-nav__link">
+    <span class="md-ellipsis">
+      分派（DSP）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#is" class="md-nav__link">
+    <span class="md-ellipsis">
+      发射（IS）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rf" class="md-nav__link">
+    <span class="md-ellipsis">
+      读寄存器（RF）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ex" class="md-nav__link">
+    <span class="md-ellipsis">
+      执行（EX）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wb" class="md-nav__link">
+    <span class="md-ellipsis">
+      写回（WB）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rob" class="md-nav__link">
+    <span class="md-ellipsis">
+      重排序缓存（ROB）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -632,11 +824,45 @@
 <h1 id="zircon-core-2024"><strong>Zircon-Core 2024</strong></h1>
 <p>Zircon 2024是Zircon系列第二代作品，面向基于RISC-V的科学计算应用开发。该处理器专注于用尽可能精简的资源支持非特权指令的高效执行，因此在一代作品的基础上，引进了更为激进的乱序执行策略、更强大的缓存系统和更高效的分支预测策略。同时，通过对一代作品的经验总结，作者在对整体处理器架构进行了一次彻底革新，通过更加“Chisel友好”的构建，进一步提升了开发效率，并获得了相较于一代20%的性能提升。</p>
 <h2 id="_1"><strong>处理器架构</strong></h2>
-<p>Zircon-2024是用Chisel硬件描述语言开发的可参数化RISC-V内核，创建于中国科学院大学。受到(BOOM处理器)[<a href="https://github.com/riscv-boom/riscv-boom">https://github.com/riscv-boom/riscv-boom</a>] 和《超标量处理器设计》（<em>姚永斌 著</em>）的启发，Zircon使用带旁路的Tomasulo算法，采用多发射、乱序执行、顺序提交的方式进行构建，其中取指、译码、执行宽度都可以通过参数配置。</p>
+<p>Zircon-2024是用Chisel硬件描述语言开发的可参数化RISC-V内核，创建于中国科学院大学。受到<a href="https://github.com/riscv-boom/riscv-boom">BOOM处理器</a> 和《超标量处理器设计》（<em>姚永斌 著</em>）的启发，Zircon使用带旁路的Tomasulo算法，采用多发射、乱序执行、顺序提交的方式进行构建，其中取指、译码、执行宽度都可以通过参数配置。</p>
 <p><img alt="Pipeline" src="../index.assets/Zircon2024-CPU.svg" /></p>
 <p>从功能角度来看，Zircon-2024分为四个板块：<strong>前端（Frontend）</strong>、<strong>分派（Dispatch）</strong>、<strong>后端（Backend）</strong>和<strong>提交（Commit）</strong>，其中提交模块仅有重排序缓存（Reorder Buffer）模块，因此本文档中会混用“提交模块”和“重排序缓存”这两个概念。</p>
 <p>在一条指令的生命周期中，指令会从前端经历取指操作进入流水线，离开前端后经由分派模块，按照其功能分配入后端不同的流水线中。后端流水线在执行完毕后，将结果写入重排序缓存，按顺序提交，从而离开流水线。</p>
-<h2 id="_2"><strong>指令支持</strong></h2>
+<h2 id="_2"><strong>流水线阶段功能概要</strong></h2>
+<p><img alt="Zircon2024" src="index.assets/Zircon2024.svg" /></p>
+<p>从功能来看，Zircon-2024的流水线可以按照如下划分：</p>
+<ul>
+<li><strong>前端：</strong>取指（IF）、预译码（PD）、译码（DCD）、重命名（RNM）；</li>
+<li><strong>分派：</strong>分派（DSP）；</li>
+<li><strong>后端：</strong>发射（IS）、读寄存器（RF）、执行（EX）、写回（WB）</li>
+</ul>
+<p>（提交与其余步骤不同步，故不在此列出）</p>
+<p>但若从具体设计角度审视，有些流水级可以重叠并行，而有些流水级需要多级流水：</p>
+<ul>
+<li>前端的译码（DCD）与重命名（RNM）可以合并为单个流水级（DCD/RNM）</li>
+<li>访存流水线后端中，执行（EX）需要三个流水级，但其中第一个流水级可以与读寄存器（RF）合并（EX/RF）</li>
+<li>乘除法流水线需要三个执行级（EX1、EX2、EX3）</li>
+</ul>
+<h3 id="if"><strong>取指（IF）</strong></h3>
+<p>取指阶段是指从生成新的PC到指令从内存获取到指令的整个过程。由于ICache是三周期流水化访问的，因此该阶段横跨了三个时钟周期，但最后一个时钟周期可以看做与预译码（PD）重叠。分支预测也发生在此阶段，这个阶段发生的预测不会引入任何气泡。</p>
+<h3 id="pd"><strong>预译码（PD）</strong></h3>
+<p>预译码会在指令从ICache送出后、写入取指队列（FQ）前组合地执行。在分支预测器做出了无效预测，或预测显然错误时，预译码器会及时冲刷流水线，降低分支预测失败的损耗。</p>
+<h3 id="dcd"><strong>译码（DCD）</strong></h3>
+<p>译码器从取指队列中获取指令，并生成操作码以组装向后流动的前端指令包。</p>
+<h3 id="rnm"><strong>重命名（RNM）</strong></h3>
+<p>重命名器将指令里所有逻辑寄存器动态映射为物理寄存器，并记录映射关系。</p>
+<h3 id="dsp"><strong>分派（DSP）</strong></h3>
+<p>分派器将前端指令包分派到能够处理该指令的后端发射队列中。</p>
+<h3 id="is"><strong>发射（IS）</strong></h3>
+<p>发射仲裁器从发射队列中选取准备好的且最适合的指令，发射到后端流水线中。</p>
+<h3 id="rf"><strong>读寄存器（RF）</strong></h3>
+<p>后端指令包从物理寄存器堆中读取操作数。</p>
+<h3 id="ex"><strong>执行（EX）</strong></h3>
+<p>执行单元根据指令类型执行指令。对于Load/Store指令，这个阶段会访问DCache，读取/写入内存数据。</p>
+<h3 id="wb"><strong>写回（WB）</strong></h3>
+<p>写回单元将执行结果写入物理寄存器堆。</p>
+<h3 id="rob"><strong>重排序缓存（ROB）</strong></h3>
+<p>重排序缓存处理器提交提交模块，负责缓存执行完毕的指令，并按顺序提交。</p>
 
 
 
