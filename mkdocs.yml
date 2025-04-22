@@ -1,0 +1,127 @@
+site_name: Zircon CPU
+
+copyright: Copyright © Zircon CPU 2025
+theme:
+  name: material
+  language: 'zh'
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.path
+    - navigation.expand
+    - content.code.copy
+  icon:
+    logo: fontawesome/solid/microchip
+  palette:
+  - scheme: 'default'
+    primary: 'brown'
+    accent: 'red'
+    toggle:
+      icon: material/weather-sunny
+      name: 切换到夜晚模式
+  - scheme: 'slate'
+    primary: 'indigo'
+    accent: 'indigo'
+    toggle:
+      icon: material/weather-night
+      name: 切换到白天模式
+# plugins:
+    # - search
+    # - pdf-export:
+    #     combined: true
+    #     media_type: print
+    #     verbose: true
+
+markdown_extensions:
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.b64
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji
+  - pymdownx.escapeall
+  - pymdownx.extra
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+      use_pygments: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink
+  - pymdownx.mark
+  - pymdownx.pathconverter
+  - pymdownx.progressbar
+  - pymdownx.saneheaders
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.striphtml
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  - pymdownx.blocks.admonition:
+      types:
+      - new 
+      - settings
+      - note
+      - abstract
+      - info
+      - tip
+      - success
+      - question
+      - warning
+      - failure
+      - danger
+      - bug
+      - example
+      - quote
+  - def_list
+  - attr_list
+  - md_in_html
+
+extra_javascript:
+  - javascripts/katex.js 
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js  
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+
+extra_css:
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
+
+nav:
+  - 首页: index.md
+  - Zircon-2023: 
+    - 首页: Zircon2023/index.md 
+    - 前端基础流水线: Zircon2023/frontend.md
+    - 后端基础流水线: Zircon2023/backend.md
+    - 特权系统: Zircon2023/priv.md
+  # - 预备知识: 
+  #   - 实验配置与工具: lab0/Tools.md
+  #   - Vivado的使用: lab0/IDE.md
+  #   - System Verilog: lab0/SV.md
+  #   - 代码编写辅助工具: lab0/Verilator.md
+  #   - Verilog常见问题分析: lab0/Bugs.md
+  # - Lab1:
+  #   - 实验内容: lab1/lab1-ex.md
+  #   - 实验要求: lab1/lab1-req.md
+  # - Lab2: 
+  #   - 实验内容: lab2/lab2-ex.md
+  #   - 实验要求: lab2/lab2-req.md
+  # - Lab3:
+  #   - 实验内容: lab3/lab3-ex.md
+  #   - 实验要求: lab3/lab3-req.md
+  # - Lab4:
+  #   - 实验内容: lab4/lab4-ex.md
+  #   - 实验要求: lab4/lab4-req.md
+  # - Lab5:
+  #   - 实验内容: lab5/lab5-ex.md
+  #   - 实验要求: lab5/lab5-req.md
+  # - Lab6:
+  #   - 实验内容: lab6/lab6-ex.md
+
