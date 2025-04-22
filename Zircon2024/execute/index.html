@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../frontend/">
+        <link rel="prev" href="../regfile/">
       
       
-        <link rel="next" href="../priv/">
+        <link rel="next" href="../memory/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>后端基础流水线 - Zircon CPU</title>
+        <title>执行阶段 - Zircon CPU</title>
       
     
     
@@ -73,11 +73,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#_1" class="md-skip">
-          跳转至
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -110,7 +105,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              后端基础流水线
+              执行阶段
             
           </span>
         </div>
@@ -214,13 +209,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../Zircon2023/" class="md-tabs__link">
           
   
   Zircon-2023
@@ -234,11 +227,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../Zircon2024/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
           
   
   Zircon-2024
@@ -312,6 +307,139 @@
       
   
   
+  
+  
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Zircon-2023
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Zircon-2023
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Zircon2023/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    首页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Zircon2023/frontend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    前端基础流水线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Zircon2023/backend/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    后端基础流水线
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Zircon2023/priv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特权系统
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -332,24 +460,24 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
-    Zircon-2023
+    Zircon-2024
   </span>
   
 
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            Zircon-2023
+            Zircon-2024
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -381,11 +509,158 @@
   
   
     <li class="md-nav__item">
-      <a href="../frontend/" class="md-nav__link">
+      <a href="../fetch/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    前端基础流水线
+    指令获取
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../predict/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    分支预测
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../predecode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    预译码与取指队列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    译码阶段
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rename/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    重命名阶段
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dispatch/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    分派与重排序缓存
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../issue/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    发射队列与仲裁
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../regfile/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    物理寄存器
   </span>
   
 
@@ -408,474 +683,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    后端基础流水线
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    后端基础流水线
-  </span>
-  
-
-      </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="目录">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      1 发射与唤醒
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1 发射与唤醒">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
-    <span class="md-ellipsis">
-      1.1 发射
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#12" class="md-nav__link">
-    <span class="md-ellipsis">
-      1.2 唤醒
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      2 读寄存器堆
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      3 算数执行
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      4 乘法与除法
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4 乘法与除法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.1 华莱士树流水乘法
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#42" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.2 对数加速移位除法
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    <span class="md-ellipsis">
-      5 存储器访问
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5 存储器访问">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#51" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.1 发射与读取寄存器堆
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#52-tlb" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.2 地址计算与TLB命中判断
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#53-tlb" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.3 TLB读取与标签比较
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#54" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.4 高速缓存缺失判断与数据重组
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#55" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.5 写回阶段
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    <span class="md-ellipsis">
-      6 提交阶段
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../priv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    特权系统
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Zircon-2024
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            Zircon-2024
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Zircon2024/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    首页
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Zircon2024/fetch/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    指令获取
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Zircon2024/predict/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    分支预测
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Zircon2024/predecode/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    预译码与取指队列
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Zircon2024/decode/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    译码阶段
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Zircon2024/rename/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    重命名阶段
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Zircon2024/dispatch/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    分派与重排序缓存
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Zircon2024/issue/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    发射队列与仲裁
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Zircon2024/regfile/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    物理寄存器
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../Zircon2024/execute/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -884,6 +693,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -896,7 +706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../Zircon2024/memory/" class="md-nav__link">
+      <a href="../memory/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -934,169 +744,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      目录
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
-    <span class="md-ellipsis">
-      1 发射与唤醒
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="1 发射与唤醒">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#11" class="md-nav__link">
-    <span class="md-ellipsis">
-      1.1 发射
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#12" class="md-nav__link">
-    <span class="md-ellipsis">
-      1.2 唤醒
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
-    <span class="md-ellipsis">
-      2 读寄存器堆
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3" class="md-nav__link">
-    <span class="md-ellipsis">
-      3 算数执行
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4" class="md-nav__link">
-    <span class="md-ellipsis">
-      4 乘法与除法
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="4 乘法与除法">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#41" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.1 华莱士树流水乘法
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#42" class="md-nav__link">
-    <span class="md-ellipsis">
-      4.2 对数加速移位除法
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5" class="md-nav__link">
-    <span class="md-ellipsis">
-      5 存储器访问
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="5 存储器访问">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#51" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.1 发射与读取寄存器堆
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#52-tlb" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.2 地址计算与TLB命中判断
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#53-tlb" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.3 TLB读取与标签比较
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#54" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.4 高速缓存缺失判断与数据重组
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#55" class="md-nav__link">
-    <span class="md-ellipsis">
-      5.5 写回阶段
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6" class="md-nav__link">
-    <span class="md-ellipsis">
-      6 提交阶段
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1111,85 +758,9 @@
                   
 
 
-<h1 id="_1"><strong>后端基础流水线</strong></h1>
-<p>处理器的后端有4个独立的功能单元，分别是：</p>
-<ul>
-<li>算数逻辑运算单元（第一运算单元）：处理算数逻辑指令和计数器读取指令</li>
-<li>算术逻辑&amp;分支跳转单元（第二运算单元）：处理算数逻辑指令和分支跳转指令</li>
-<li>乘除&amp;特权处理单元：处理乘除法和特权指令</li>
-<li>访存处理单元：处理器加载、存储和同步指令</li>
-</ul>
-<h2 id="1"><strong>1 发射与唤醒</strong></h2>
-<p>处理器的发射队列采用压缩队列进行实现，其中算数逻辑运算单元和分支跳转单元的发射队列为乱序发射队列，而为了保证特权指令的顺序和龙芯架构32位精简版指令集中对于“强序非缓存”的定义，乘除和访存单元的发射队列为顺序发射队列。</p>
-<h3 id="11"><strong>1.1 发射</strong></h3>
-<p>发射队列的每个表项包括：</p>
-<ul>
-<li>指令包：包含当前指令在后端所需的全部信号</li>
-<li>寄存器唤醒标记：表示当前寄存器是否被前序指令唤醒</li>
-<li>寄存器由加载指令唤醒标记：表示当前寄存器是否由加载指令唤醒</li>
-</ul>
-<p>发射操作由发射队列和选择模块协同完成。这两个模块间使用Request-Acknowledge协议进行通讯。</p>
-<p>顺序发射队列仅会在寄存器已经就绪时，使最旧的指令向选择模块发送发射请求，若后续流水线无阻塞，则选择模块会响应这个请求，并将指令发射到后续流水线中。而在乱序发射队列中，每一个有效表项都会向选择模块发送发射请求，而选择模块会使用优先编码器，响应其中最旧指令的请求，这是因为：</p>
-<ul>
-<li>最旧的指令往往处于相关链顶端，发射后可以唤醒更多指令</li>
-<li>对于读计数器指令，这种策略可以保证连续两条读取指令读取到的数据是循环递增的</li>
-</ul>
-<h3 id="12"><strong>1.2 唤醒</strong></h3>
-<p>发射队列中的每一个表项都会将自身的两个源寄存器编号与唤醒总线上的4个寄存器编号进行比较，若相等则将唤醒标记置位。在处理器中，有两处唤醒操作较为重要：</p>
-<ul>
-<li><strong>推测唤醒</strong>：由于加载指令往往处于相关链的顶端，因此访存处理单元采取了推测唤醒的方式。在访存的第一个周期，该指令便开始唤醒其他指令，若唤醒成功则将加载指令唤醒标记置位。若下一个周期发现该指令发生了高速缓存缺失，则所有被当前指令唤醒的指令应当在缺失处理完成前滞留在发射队列中，否则正常发射即可。</li>
-<li><strong>相关指令连续发射</strong>：算数逻辑指令占据了程序绝大部分比重，因此这些指令若能够在相关时连续发射，就能够对处理器性能有较大提升，故该处理器中算术逻辑队列的发射与唤醒在同一个周期内完成。</li>
-</ul>
-<h2 id="2"><strong>2 读寄存器堆</strong></h2>
-<p>为了适应四个发射队列独立读取和写入，寄存器堆共有8个读端口和4个写端口，每一个读端口都配备了写优先。由于后端所有指令不可能出现目的寄存器相同的两条指令，因此写优先至多命中一个写数据，故可以将四个写入数据前递到每一个读端口上。</p>
-<h2 id="3"><strong>3 算数执行</strong></h2>
-<p>该处理器共有两个ALU，支持龙芯架构32位精简版指令集规定的全部11种运算。其中：</p>
-<ul>
-<li>第一运算单元承担了读取计数器值的功能</li>
-<li>第二运算单元承担了为BL和JIRL指令计算PC+4的功能</li>
-</ul>
-<h2 id="4"><strong>4 乘法与除法</strong></h2>
-<h3 id="41"><strong>4.1 华莱士树流水乘法</strong></h3>
-<p>处理器的乘法单元采用了3级流水的华莱士树流水乘法，使用33位扩展乘法来实现龙芯架构32位精简版指令集中全部乘法指令。具体如下：</p>
-<ul>
-<li>第一级：2位Booth编码，使用乘数将被乘数编码，将部分和的数量由32削减至16</li>
-<li>第二级：8层66位保留进位加法器树，每层将部分和削减三分之一，直至剩余两个部分和</li>
-<li>第三级：64位全加器，将最后两个部分和相加，得到最后结果。</li>
-</ul>
-<h3 id="42"><strong>4.2 对数加速移位除法</strong></h3>
-<p>除法和取余运算本质相同，都类似于竖式除法的方式进行移位相减。</p>
-<p>当被除数较小时，竖式除法是没有必要使用32个周期完成运算的。因此，处理器在第一个周期取被除数的对数（即寻找最高位的1是第几位），记录在计数器中，除法开始后，只需要运行被除数的对数个周期，即可完成运算。</p>
-<h2 id="5"><strong>5 存储器访问</strong></h2>
-<p>考虑到时序问题，访存流水线的设计与其余流水线有较大差别，也引入了一些特殊的部件。下面一一进行介绍</p>
-<h3 id="51"><strong>5.1 发射与读取寄存器堆</strong></h3>
-<p>由于访存队列是压缩的且是顺序发送的，因此寄存器堆的读地址只会来自发射队列的第0个表项，是相对固定的，故发射队列和寄存器堆之间没有段间寄存器堆，指令发射与读取寄存器堆是同步进行的。</p>
-<h3 id="52-tlb"><strong>5.2 地址计算与TLB命中判断</strong></h3>
-<p>TLB的全相连结构使其前后都不可有任何其他的组合逻辑，若存在组合逻辑，则需要对TLB读取进行切割，因此和取指不同，访存的TLB采用了两级切割。第一个流水级，访存单元计算出虚拟地址，并和TLB的每一个表项进行命中判断，将命中信息独热码送入段间寄存器。</p>
-<p>在这个流水级，虚拟地址也被送入数据高速缓存（DCache），根据虚拟Index物理Tag原理，这个周期可以使用虚拟地址中的Index部分开始查找Tag和Data表所在的BRAM。</p>
-<h3 id="53-tlb"><strong>5.3 TLB读取与标签比较</strong></h3>
-<p>段间寄存器中的TLB命中独热码可以作为独热码，对TLB表项进行索引。索引出的结果将送入DCache，和读出的Tag进行比较，并将命中信息送入下一段间寄存器。</p>
-<p>由于此阶段的访存请求都是推测的，因此写操作不能在此时产生效果，故这个阶段需要将写请求写入一个写缓冲（Store Buffer）中，当存储指令被提交时，该指令才会对高速缓存发起写操作。在执行加载指令时，也要同步查找写缓冲，查找方式如下：</p>
-<ul>
-<li>对当前请求地址对应的4个字节分别进行全相连查找，将命中信息锁存一个周期</li>
-<li>利用命中信息读取对应的写缓冲数据，当有多项命中时，根据尾指针的位置找到最近写入的数据</li>
-</ul>
-<h3 id="54"><strong>5.4 高速缓存缺失判断与数据重组</strong></h3>
-<p>为优化时序，高速缓存在获取到命中信息后，并不会立刻使用状态机进行缺失判断，而是锁存一个周期后送入状态机。</p>
-<p>为了使得龙芯架构中的强序非缓存访问能够按照顺序确定地执行，所有的非可缓存访问都会滞留在这个阶段，直至这个访问被确认为是最旧的一条指令，流水线才会继续流动。</p>
-<p>对于加载指令，其数据可能来自于高速缓存，也可能来自于写缓冲，因此在这个阶段需要根据写缓冲的命中情况，对数据进行拼接。</p>
-<h3 id="55"><strong>5.5 写回阶段</strong></h3>
-<p>写回阶段将会对物理寄存器堆发起写操作，并标记重排序缓存对应表项的完成状态。</p>
-<p>为了加速运算指令的执行，这个阶段在第一、二运算和访存流水线中架设了旁路网络：</p>
-<ul>
-<li>第一、第二运算流水线可以相互前递数据，使得二者间的相关指令可以连续发射；</li>
-<li>第一、第二运算和访存流水线可以将数据前递回访存流水线的地址计算阶段，压缩了访存的流水线级数</li>
-</ul>
-<h2 id="6"><strong>6 提交阶段</strong></h2>
-<p>处理器的提交阶段负责维护处理器状态，主要包括重排序缓存（ROB）和状态恢复元件（ARAT）。</p>
-<ul>
-<li>ROB采用伪双端口交叠FIFO的形式实现，每个周期最多可以提交两条指令，在基础架构中，若头部指令不为跳转指令，则若ROB队列头部两条指令均完成执行，则会提交两条指令。</li>
-<li>ARAT中维护了寄存器映射表的有效位，可在分支预测失败时恢复到重命名单元中。同时，ARAT还维护了分支预测器返回地址栈的栈顶指针，在分支预测失败时，也会恢复到分支预测器中，对分支预测正确率有一定提升。</li>
-</ul>
+  <h1>执行阶段</h1>
+
+<p>TODO</p>
 
 
 
