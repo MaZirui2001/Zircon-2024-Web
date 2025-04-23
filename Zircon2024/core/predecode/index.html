@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -612,6 +617,19 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    预译码与取指队列
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -622,6 +640,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      预译码器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      取指队列
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -805,9 +860,46 @@
                   
 
 
-  <h1>预译码与取指队列</h1>
-
-<p>TODO</p>
+<h1 id="_1"><strong>预译码与取指队列</strong></h1>
+<p>预译码是指令从ICache取出后，立刻经历的第一个处理阶段。这个阶段会借助预译码器对指令的部分信息进行初步的解码，并快速根据有限的分支相关信息对分支预测结果进行纠正。之后，预译码器会将修正后的指令组，送入取指队列，等待后续的指令发射与解码。</p>
+<h2 id="_2"><strong>预译码器</strong></h2>
+<p>预译码器由个数与取指宽度相等的独立的预译码单元组成，每个预译码单元负责一条指令的预译码。预译码单元将完成以下工作：</p>
+<ul>
+<li>解析指令的rd、rj和rk，并送入取指队列；</li>
+<li>解析指令的rd是否有效，生成rdVld信号，并送入取指队列；</li>
+<li>解析指令的跳转类型、立即数，并对PC相关跳转指令的分支预测结果立即进行修正。</li>
+</ul>
+<h3 id="_3"><strong>寄存器信息解析</strong></h3>
+<p>RISCV指令集并不包含隐含寄存器，且rd、rj和rk在指令集中的位置是固定的。预译码对这些信息的解析，主要是为了后续译码器能够与重命名模块并行工作。不过，这样的设计会导致取指队列额外存储了三个寄存器编号，占用了宝贵的队列空间。这主要是因为Zircon-2024由基于龙芯架构的Zircon-2023迭代而来，在设计预译码器时受到龙芯架构的影响，采用了提前解析寄存器信息的设计。而对于RISCV，由于指令中rd、rj和rk的位置是确定的，因此预译码器完全可以不解析这些信息。后续更新将会优化这个问题。</p>
+<h3 id="_4"><strong>分支预测修正</strong></h3>
+<p>在预译码阶段，预译码单元已经拿到了指令码，因此可以用很少的逻辑判断出指令的跳转类型。作者把所有指令按照跳转类型分为四类：<strong>非跳转（nJ）、分支（brnach）、跳转链接（jal）和跳转链接立即数（jalr）</strong>。对于每种指令，作者采用了不同的修正策略：</p>
+<ul>
+<li><strong>非跳转：</strong>如果分支预测给出的预测跳转偏移不为4，则对PC发起冲刷，冲刷目标为PC+4；</li>
+<li><strong>分支：</strong><ul>
+<li>如果分支预测给出了有效预测，则看分支预测预测是否跳转：<ul>
+<li>若预测跳转，则若预测跳转偏移与指令内立即数（imm）不等，则对PC发起冲刷，冲刷目标为PC+imm；</li>
+<li>若预测不跳转，则若预测跳转偏移不为4，则对PC发起冲刷，冲刷目标为PC+4；</li>
+</ul>
+</li>
+<li>若分支预测没有给出有效预测，则启动静态预测：若立即数为负数，则冲刷流水线并预测跳转，否则不冲刷流水线。</li>
+</ul>
+</li>
+<li><strong>跳转链接：</strong>：如果分支预测给出的跳转偏移与立即数不等，则对PC发起冲刷，冲刷目标为PC+imm；</li>
+<li><strong>跳转链接立即数：</strong>：<ul>
+<li>若分支预测给出无效预测或rj为1，则视为一条return指令，此时使用映射到r1的物理寄存器的值进行跳转，并冲刷流水线；</li>
+<li>否则，听从分支预测的结构，并修正跳转偏移为PC+imm。</li>
+</ul>
+</li>
+</ul>
+<p>预译码器的分支预测修正，可以在程序进入一个新的指令块时，帮助分支预测器快速启动预热。同时，对于被预测跳转的非分支指令，由于其可能在未来不会进入分支计算单元，因此会导致指令流不能被正确修正，预译码器可以在此处解决这个问题。</p>
+<h2 id="_5"><strong>取指队列</strong></h2>
+<p>取指队列是Zircon-2024的取指模块与解码模块之间的接口。取指队列的入队宽度为取指宽度，出队宽度为译码宽度，二者可以灵活配置。</p>
+<h3 id="_6"><strong>队列结构</strong></h3>
+<p>取指队列采用了Cluster结构，其内部有n个子队列，n为入队宽度和出队宽度的最大值。每一个子队列都是一个FIFO队列，每个周期至多只会从每个子队列中取出或写入每个子队列一个元素，从而有效减少了电路面积和延迟。</p>
+<details class="note" open="open">
+<summary>Cluster结构在电路面积上的优势分析</summary>
+<p>设FIFO一共有n项，如果具有k个写口，那么地址选择线需要有n*k条。如果采用Cluster结构，内含k个子队列，那么每个子队列的地址选择线只需要n/k条，整个FIFO的地址选择线数量为n/k*k=n条，仅为原来的1/k。因此，Cluster结构可以有效减少地址选择线的数量，从而减少电路面积。</p>
+</details>
 
 
 
