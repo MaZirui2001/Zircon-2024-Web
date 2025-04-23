@@ -1,16 +1,18 @@
 site_name: Zircon CPU
 
 copyright: Copyright © Zircon CPU 2025
+
 theme:
   name: material
   language: 'zh'
   features:
     - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.sections
+    # - navigation.tabs.sticky
+    # - navigation.sections
     - navigation.path
-    - navigation.expand
+    # - navigation.expand
     - content.code.copy
+    - toc.integrate
   icon:
     logo: fontawesome/solid/microchip
   palette:
@@ -34,6 +36,8 @@ theme:
     #     verbose: true
 
 markdown_extensions:
+  - toc:
+      toc_depth: 2
   - admonition
   - pymdownx.arithmatex:
       generic: true
@@ -95,12 +99,26 @@ extra_css:
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
 
 nav:
-  - 首页: index.md
+  - 主页: index.md
   - Zircon-2023: 
     - 首页: Zircon2023/index.md 
     - 前端基础流水线: Zircon2023/frontend.md
     - 后端基础流水线: Zircon2023/backend.md
     - 特权系统: Zircon2023/priv.md
+  - Zircon-2024:
+    - 主页: Zircon2024/index.md
+    - 往期经验: Zircon2024/experience.md
+    - 核心概述: 
+      - 指令获取: Zircon2024/core/fetch.md
+      - 分支预测: Zircon2024/core/predict.md
+      - 预译码与取指队列: Zircon2024/core/predecode.md
+      - 译码阶段: Zircon2024/core/decode.md
+      - 重命名阶段: Zircon2024/core/rename.md
+      - 分派与重排序缓存: Zircon2024/core/dispatch.md
+      - 发射队列与仲裁: Zircon2024/core/issue.md
+      - 物理寄存器: Zircon2024/core/regfile.md
+      - 执行阶段: Zircon2024/core/execute.md
+      - 访存系统: Zircon2024/core/memory.md
   # - 预备知识: 
   #   - 实验配置与工具: lab0/Tools.md
   #   - Vivado的使用: lab0/IDE.md
