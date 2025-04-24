@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -654,6 +659,19 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    重命名阶段
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -664,6 +682,61 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      重命名的意义
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      重命名的策略
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      重命名映射表
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      空闲列表
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -805,9 +878,34 @@
                   
 
 
-  <h1>重命名阶段</h1>
-
-<p>TODO</p>
+<h1 id="_1"><strong>重命名阶段</strong></h1>
+<p>重命名阶段将会对指令中的所有逻辑寄存器编号进行映射，使其指向一个物理寄存器。</p>
+<h2 id="_2"><strong>重命名的意义</strong></h2>
+<p>重命名是将指令中的逻辑寄存器映射为物理寄存器的技术，旨在打破指令之间的输出依赖（WAW）和反依赖（WAR），留下真正的数据依赖（RAW）。在消除了指令的输出依赖后，后端指令的流动就不再受限于程序序，而是可以仅仅在遵循数据依赖的前提下执行。因此，重命名技术是为了挖掘隐藏于程序序中的潜在并行性，并将其暴露给后端流水线。</p>
+<h2 id="_3"><strong>重命名的策略</strong></h2>
+<p>Zircon-2024采用了基于显式重命名的策略，也被称作使用统一物理寄存器堆（PRF）的策略。这种策略有以下几个基本特点：</p>
+<ul>
+<li>处理器中不存在逻辑寄存器堆，而是使用一个更大的物理寄存器堆来保存数据。</li>
+<li>重命名阶段会为每一个带有目的寄存器的指令分配一个空闲的物理寄存器，并立刻将其与逻辑目的寄存器进行绑定（写入重命名映射表）。</li>
+<li>重命名阶段还会从映射表中读出每个指令所有源寄存器对应的物理寄存器编号，并打包入流水线中。</li>
+</ul>
+<p>显式重命名策略可以简化后端读取寄存器堆的逻辑，因为基于ROB的隐式重命名在读取寄存器堆时需要用比较复杂的逻辑，从头指针到尾指针地遍历ROB，并使用优先编码器来确定最近的写入数值，而统一的物理寄存器堆的方案直接读取即可。而显式重命名的代价就是需要在提交段维护一个完全正确的重命名表，只在提交时更新该表。当发生流水线冲刷时，提交段的重命名表会将其映射关系恢复到重命名段的映射表中。</p>
+<details class="warning" open="open">
+<summary>何谓“空闲”的物理寄存器</summary>
+<p>我们可以假设在时刻<span class="arithmatex">\(n\)</span>，逻辑寄存器<span class="arithmatex">\(L_i\)</span>被映射为物理寄存器<span class="arithmatex">\(P_j\)</span>，这代表发生重命名的指令的目的寄存器是<span class="arithmatex">\(L_i\)</span>。而在之后的某个时刻<span class="arithmatex">\(n+m\)</span>，又出现了一条目的寄存器为<span class="arithmatex">\(L_i\)</span>的指令，那么为了避免WAW的限制，这条指令一定不会被分配到<span class="arithmatex">\(P_j\)</span>，而是会被分配到另外一个物理寄存器<span class="arithmatex">\(P_k\)</span>。如果<span class="arithmatex">\(P_k\)</span>对应的指令被提交了，那么也就代表<span class="arithmatex">\(L_i\)</span>曾经对应的物理寄存器<span class="arithmatex">\(P_j\)</span>中的值再也不可能被访问了（因为事实上在逻辑上，它的值已经被<span class="arithmatex">\(P_k\)</span>中对应的<span class="arithmatex">\(L_i\)</span>新值覆盖了）。</p>
+<p>因此，我们可以得到结论：被<span class="arithmatex">\(L_i\)</span>映射的物理寄存器<span class="arithmatex">\(P_j\)</span>在<strong>下一条</strong>目的寄存器为<span class="arithmatex">\(L_i\)</span>的指令提交时，就变得“空闲”了。</p>
+</details>
+<details class="exercise" open="open">
+<summary>物理寄存器堆中寄存器数量的最小值？</summary>
+<p>考虑一种极端情况：假如流水线不出现任何冲刷、停顿，此时连续出现了32条目的寄存器各不相同的指令，那么他们会消耗掉32个物理寄存器，且此时根据前面的结论，这32个物理寄存器不可能在第33条指令到达重命名阶段时是空闲的，那么此时流水线就会因为没有空闲物理寄存器而陷入永久的停顿。因此，我们需要的物理寄存器数量至少要多于32个。</p>
+<p>那么要配备多少物理寄存器才能让处理器有满负载运行可行性呢？一种被广泛用于教学的解是：物理寄存器的数量应该刚好是后端每一个流水线的每一个流水级都被填满有效指令时，流水线中所有指令的数目。但这种考虑是理论的，在实际上物理寄存器的数量取值要小得多，因为前端取指和译码能力是有限的，如果出现了后端流水线满载运行的情况，那么在这之前后端一定被阻塞了一段时间，且这期间很有可能出现了错误分支路径的指令。因此，具体的物理寄存器数量需要根据实际的测量数据来确定。</p>
+</details>
+<h2 id="_4"><strong>重命名映射表</strong></h2>
+<p>重命名映射表记录了逻辑寄存器到物理寄存器的映射关系。虽然基于CAM的映射表在因为流水线冲刷导致的映射关系恢复时存在一定的资源优势，但受限于缺少专用的CAM硬件，Zircon-2024仍然采用了基于SRAM的映射表。</p>
+<p>在重命名阶段，每一个源逻辑寄存器都会从重命名映射表中读取对应的物理寄存器编号，而目的寄存器则会首先从物理寄存器中读取自己原先对应的物理寄存器编号（用于在提交时使这个物理寄存器恢复空闲），然后将从空闲列表中获取的新物理寄存器编号写入自己的映射表项中。</p>
+<h2 id="_5"><strong>空闲列表</strong></h2>
+<p>空闲列表记录了当前可用的物理寄存器编号。它使用了Cluster结构的FIFO进行实现，其中的子队列数量是译码宽度和提交宽度的最大值。</p>
+<p>当空闲列表为空时，重命名阶段会引起之前全部流水级的停顿，直到提交段提交了新的空闲物理寄存器。</p>
 
 
 
