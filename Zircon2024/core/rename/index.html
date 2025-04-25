@@ -273,9 +273,7 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Zircon CPU" class="md-nav__button md-logo" aria-label="Zircon CPU" data-md-component="logo">
       
@@ -319,13 +317,17 @@
     
       
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
         
           
           <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
@@ -453,6 +455,8 @@
         
       
       
+        
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
@@ -535,16 +539,21 @@
     
       
       
+        
+          
+          
+        
+      
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -734,6 +743,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      流水线重定向的影响
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -870,6 +888,77 @@
               </div>
             
             
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      重命名的意义
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      重命名的策略
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      重命名映射表
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      空闲列表
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      流水线重定向的影响
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           
             <div class="md-content" data-md-component="content">
@@ -882,6 +971,7 @@
 <p>重命名阶段将会对指令中的所有逻辑寄存器编号进行映射，使其指向一个物理寄存器。</p>
 <h2 id="_2"><strong>重命名的意义</strong></h2>
 <p>重命名是将指令中的逻辑寄存器映射为物理寄存器的技术，旨在打破指令之间的输出依赖（WAW）和反依赖（WAR），留下真正的数据依赖（RAW）。在消除了指令的输出依赖后，后端指令的流动就不再受限于程序序，而是可以仅仅在遵循数据依赖的前提下执行。因此，重命名技术是为了挖掘隐藏于程序序中的潜在并行性，并将其暴露给后端流水线。</p>
+<p><img alt="fetch.svg" src="../fetch.assets/Rename.svg" /></p>
 <h2 id="_3"><strong>重命名的策略</strong></h2>
 <p>Zircon-2024采用了基于显式重命名的策略，也被称作使用统一物理寄存器堆（PRF）的策略。这种策略有以下几个基本特点：</p>
 <ul>
@@ -906,6 +996,10 @@
 <h2 id="_5"><strong>空闲列表</strong></h2>
 <p>空闲列表记录了当前可用的物理寄存器编号。它使用了Cluster结构的FIFO进行实现，其中的子队列数量是译码宽度和提交宽度的最大值。</p>
 <p>当空闲列表为空时，重命名阶段会引起之前全部流水级的停顿，直到提交段提交了新的空闲物理寄存器。</p>
+<p>空闲列表的表项数并不为物理寄存器数量，而是物理寄存器数量-32，这是因为在CPU完全运转起来时，流水线中一定会常驻32对映射关系，因此空闲列表最多的时候只会记录物理寄存器-32个空闲物理寄存器。作者使得重命名映射表在上电时，第i个表项会预先映射到物理寄存器i，使得重命名表跳过了“热身”环节，可观的减少了资源消耗。</p>
+<p>在实践中，BOOM采用了一个和物理寄存器数量等长的布尔数组来记录每个物理寄存器的空闲情况，这种设计需要多个优先编码器级联来确定空闲的物理寄存器编号，这在物理寄存器变多时的性能损失会较大。而作者所设计的Cluster结构不会引入如此复杂的逻辑，因此可以进一步提升时序。</p>
+<h2 id="_6"><strong>流水线重定向的影响</strong></h2>
+<p>提交段的流水线重定向将会引发重命名映射表和空闲列表的恢复。其中，重命名映射表会将提交段的映射表恢复到自身，空闲列表则会将提交段维护的读指针恢复到自身。</p>
 
 
 
@@ -956,7 +1050,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.path", "content.code.copy", "toc.integrate"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.path", "navigation.expand", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
     
     
       <script src="../../../assets/javascripts/bundle.56dfad97.min.js"></script>
