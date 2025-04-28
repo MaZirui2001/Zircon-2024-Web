@@ -73,6 +73,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -736,6 +741,19 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    物理寄存器
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -746,6 +764,43 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      读取物理寄存器堆
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agu" class="md-nav__link">
+    <span class="md-ellipsis">
+      AGU
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -826,6 +881,34 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      读取物理寄存器堆
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agu" class="md-nav__link">
+    <span class="md-ellipsis">
+      AGU
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -840,9 +923,12 @@
                   
 
 
-  <h1>物理寄存器</h1>
-
-<p>TODO</p>
+<h1 id="_1"><strong>物理寄存器</strong></h1>
+<p>Zircon-2024采用统一的物理寄存器堆设计。在后端流水线中，指令不存在“逻辑寄存器”的概念。当指令被发射后，会根据经过重命名的物理寄存器编号来访问物理寄存器堆。若设发射宽度为nis，则物理寄存器堆需要配备<span class="arithmatex">\(2 \times nis\)</span>个读口和<span class="arithmatex">\(nis\)</span>个写口。</p>
+<h2 id="_2"><strong>读取物理寄存器堆</strong></h2>
+<p>在Zircon-2024中，每条流水线都会配备自己的读口和写口，且读取物理寄存器堆的动作是写优先的，即若同一个周期有某个写口的写地址和当前读地址相同，则读取的数据为该写口的写入数据，而非寄存器堆中该读地址对应的数据。</p>
+<h2 id="agu"><strong>AGU</strong></h2>
+<p>Zircon-2024的AGU单元负责计算指令的访存地址。为了进一步缩减load-store流水线的流水级，AGU会在物理寄存器堆读出的当周期，立刻将rj读取的值与立即数相加，并继续进行后续的访存操作。这种设计使得load和其相关的其他指令的发射间隔最少仅相隔1个周期，同时也不会引入过多的时序问题。</p>
 
 
 
