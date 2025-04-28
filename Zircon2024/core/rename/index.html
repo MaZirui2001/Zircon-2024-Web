@@ -995,7 +995,7 @@
 <p>我们可以假设在时刻<span class="arithmatex">\(n\)</span>，逻辑寄存器<span class="arithmatex">\(L_i\)</span>被映射为物理寄存器<span class="arithmatex">\(P_j\)</span>，这代表发生重命名的指令的目的寄存器是<span class="arithmatex">\(L_i\)</span>。而在之后的某个时刻<span class="arithmatex">\(n+m\)</span>，又出现了一条目的寄存器为<span class="arithmatex">\(L_i\)</span>的指令，那么为了避免WAW的限制，这条指令一定不会被分配到<span class="arithmatex">\(P_j\)</span>，而是会被分配到另外一个物理寄存器<span class="arithmatex">\(P_k\)</span>。如果<span class="arithmatex">\(P_k\)</span>对应的指令被提交了，那么也就代表<span class="arithmatex">\(L_i\)</span>曾经对应的物理寄存器<span class="arithmatex">\(P_j\)</span>中的值再也不可能被访问了（因为事实上在逻辑上，它的值已经被<span class="arithmatex">\(P_k\)</span>中对应的<span class="arithmatex">\(L_i\)</span>新值覆盖了）。</p>
 <p>因此，我们可以得到结论：被<span class="arithmatex">\(L_i\)</span>映射的物理寄存器<span class="arithmatex">\(P_j\)</span>在<strong>下一条</strong>目的寄存器为<span class="arithmatex">\(L_i\)</span>的指令提交时，就变得“空闲”了。</p>
 </details>
-<details class="exercise" open="open">
+<details class="example" open="open">
 <summary>物理寄存器堆中寄存器数量的最小值？</summary>
 <p>考虑一种极端情况：假如流水线不出现任何冲刷、停顿，此时连续出现了32条目的寄存器各不相同的指令，那么他们会消耗掉32个物理寄存器，且此时根据前面的结论，这32个物理寄存器不可能在第33条指令到达重命名阶段时是空闲的，那么此时流水线就会因为没有空闲物理寄存器而陷入永久的停顿。因此，我们需要的物理寄存器数量至少要多于32个。</p>
 <p>那么要配备多少物理寄存器才能让处理器有满负载运行可行性呢？一种被广泛用于教学的解是：物理寄存器的数量应该刚好是后端每一个流水线的每一个流水级都被填满有效指令时，流水线中所有指令的数目。但这种考虑是理论的，在实际上物理寄存器的数量取值要小得多，因为前端取指和译码能力是有限的，如果出现了后端流水线满载运行的情况，那么在这之前后端一定被阻塞了一段时间，且这期间很有可能出现了错误分支路径的指令。因此，具体的物理寄存器数量需要根据实际的测量数据来确定。</p>
