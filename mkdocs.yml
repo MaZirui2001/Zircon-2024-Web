@@ -4,15 +4,16 @@ copyright: Copyright © Zircon CPU 2025
 
 theme:
   name: material
+  custom_dir: overrides
   language: 'zh'
   features:
     - navigation.tabs
     # - navigation.tabs.sticky
-    # - navigation.sections
+    - navigation.sections
     - navigation.path
-    # - navigation.expand
+    - navigation.expand
     - content.code.copy
-    - toc.integrate
+    # - toc.integrate
   icon:
     logo: fontawesome/solid/microchip
   palette:
@@ -114,7 +115,7 @@ nav:
       - 预译码与取指队列: Zircon2024/core/predecode.md
       - 译码阶段: Zircon2024/core/decode.md
       - 重命名阶段: Zircon2024/core/rename.md
-      - 分派与重排序缓存: Zircon2024/core/dispatch.md
+      - 重排序缓存与分派: Zircon2024/core/dispatch.md
       - 发射队列与仲裁: Zircon2024/core/issue.md
       - 物理寄存器: Zircon2024/core/regfile.md
       - 执行阶段: Zircon2024/core/execute.md

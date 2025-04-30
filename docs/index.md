@@ -1,4 +1,7 @@
-# **Zircon RISC-V 处理器设计**
+---
+comments: true
+---
+# **Zircon Core 处理器设计**
 
 ![image-20250422133400816](./index.assets/image-20250422133400816.png)
 
@@ -56,3 +59,6 @@ Zircon-Core 2024是Zircon系列的第二代产品，作者在总结并吸取一�
 - **中国科学技术大学**：
     - 教师：卢建良、张俊霞、樊彦恩、赵雅楠
     - 学生：张子辰、徐航宇
+
+???+ example "**留言板**"
+    欢迎大家在本页面下方留言，提出宝贵意见和建议。该留言板事实上是抓取了[这个仓库](https://github.com/MaZirui2001/Zircon-2024-Web)的discussions，并将其展示在了本页面下方。
