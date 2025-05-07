@@ -830,15 +830,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#icache_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      指令高速缓存（ICache）
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#dcache" class="md-nav__link">
     <span class="md-ellipsis">
       数据高速缓存（DCache）
@@ -916,15 +907,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#icache_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      指令高速缓存（ICache）
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#dcache" class="md-nav__link">
     <span class="md-ellipsis">
       数据高速缓存（DCache）
@@ -960,7 +942,6 @@
 <h1 id="_1"><strong>访存系统</strong></h1>
 <p>Zircon-2024采用了二级缓存的结构，一级缓存包括指令缓存（ICache）和数据缓存（DCache），二级缓存由L2 Cache组成，并采用数据包含式的L2 Cache设计。</p>
 <h2 id="icache"><strong>指令高速缓存（ICache）</strong></h2>
-<h2 id="icache_1"><strong>指令高速缓存（ICache）</strong></h2>
 <p>Zircon-2024采用自研的ICache来缓存内存中的指令。这是一个支持采用Virtual Index Physical Tag（VIPT）的2路组相连，大小参数可配置的阻塞式缓存（目前还没有加入完整的MMU支持）。</p>
 <p>在旧版本的设计中，ICache曾可支持跨行访问，但随着分支预测的引入，指令获取部分给出了新的规则，这种跨行访问方案就变得不再具有明显意义。因此为了降低功耗和资源消耗量，在后续的设计中，ICache不再支持跨行访问。</p>
 <p>为了节省功耗，只有ICache只有在需要读写时，其读写端口的使能信号才会有效。这是由其内部的状态机进行控制的。</p>
