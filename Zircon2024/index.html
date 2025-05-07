@@ -755,7 +755,7 @@
         
   
   <span class="md-ellipsis">
-    重排序缓存与分派
+    分派与提交
   </span>
   
 
@@ -797,7 +797,7 @@
         
   
   <span class="md-ellipsis">
-    物理寄存器
+    物理寄存器堆
   </span>
   
 
@@ -928,7 +928,7 @@
 <h2 id="_1"><strong>处理器架构</strong></h2>
 <p>Zircon-2024是用Chisel硬件描述语言开发的可参数化RISC-V内核，创建于中国科学院大学。受到<a href="https://github.com/riscv-boom/riscv-boom">BOOM处理器</a> 和《超标量处理器设计》（<em>姚永斌 著</em>）的启发，Zircon使用带旁路的Tomasulo算法，采用多发射、乱序执行、顺序提交的方式进行构建，其中取指、译码、执行宽度都可以通过参数配置。</p>
 <p><img alt="Pipeline" src="../index.assets/Zircon2024-CPU.svg" /></p>
-<p>从功能角度来看，Zircon-2024分为四个板块：<strong>前端（Frontend）</strong>、<strong>分派（Dispatch）</strong>、<strong>后端（Backend）</strong>和<strong>提交（Commit）</strong>，其中提交模块仅有重排序缓存（Reorder Buffer）模块，因此本文档中会混用“提交模块”和“重排序缓存”这两个概念。</p>
+<p>从功能角度来看，Zircon-2024分为四个板块：<strong>前端（Frontend）</strong>、<strong>分派（Dispatch）</strong>、<strong>后端（Backend）</strong>和<strong>提交（Commit）</strong>。</p>
 <p>在一条指令的生命周期中，指令会从前端经历取指操作进入流水线，离开前端后经由分派模块，按照其功能分配入后端不同的流水线中。后端流水线在执行完毕后，将结果写入重排序缓存，按顺序提交，从而离开流水线。</p>
 <h2 id="_2"><strong>流水线阶段功能概要</strong></h2>
 <p><img alt="Zircon2024" src="index.assets/Zircon2024.svg" /></p>
