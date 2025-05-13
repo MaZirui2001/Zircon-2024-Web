@@ -23,13 +23,13 @@ Zircon-Core系列处理器是基于RISC系列指令集设计的超标量处理�
 
 ## **系列作品简介**
 ### **Zircon-Core 2023**
-Zircon-Core 2023是Zircon系列处理器的处女座，也是作者首次系统性使用Chisel独立开发超标量处理器的编程实践。该处理器基于Loongarch 32bit Reduced指令集开发，实现了该指令集中除IBAR和DBAR之外的全部指令和特权架构。
+Zircon-Core 2023是Zircon系列处理器的处女作，也是作者首次系统性使用Chisel独立开发超标量处理器的编程实践。该处理器基于Loongarch 32bit Reduced指令集开发，实现了该指令集中除IBAR和DBAR之外的全部指令和特权架构。
 
 ![Pipeline](./index.assets/Pipeline.png)
 
 
 ???+ info "**开源仓库**"
-    该处理器已经在[Github](https://github.com/MaZirui2001/Zircon)开源，欢迎业界同仁批评指正。
+    该处理器已经在[Github开源仓库](https://github.com/MaZirui2001/Zircon)开源，欢迎业界同仁批评指正。
 
 ???+ success "**获奖情况**"
     作者以该处理器设计为基础，完成了中国科学技术大学2024年本科毕业论文《基于龙芯架构32位精简版指令集的超标量处理器设计》论文。该论文获得了以下荣誉：
@@ -44,8 +44,9 @@ Zircon-Core 2024是Zircon系列的第二代产品，作者在总结并吸取一�
 ![Zircon2024-CPU](./index.assets/Zircon2024-CPU.svg)
 
 
-???+ info "**开发日程**"
-    目前该处理器已经通过仿真基本验证了指令的正确性，并在CoreMark性能测试中获得了1.04的IPC。
+???+ info "**开源仓库**"
+    该处理器已经在[Github开源仓库](https://github.com/MaZirui2001/Zircon-2024.git)开源，欢迎业界同仁批评指正。
+    
 
 
 ## **鸣谢**
