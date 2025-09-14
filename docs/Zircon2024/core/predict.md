@@ -9,7 +9,7 @@ BTBMini是用来记录每一条分支指令的跳转目标地址的元件。其�
 | 字段 | 位宽 | 描述 |
 | --- | --- | --- |
 | predType | 2 | 分支指令类型 |
-| imm | 19 | 跳转偏移|
+| imm | 30 | 跳转目标地址 |
 | pattern | 3 | 3位饱和计数器 |
 
 每个周期，BTBMini会向分支预测器提供当前指令组内所有指令的两个信息：predType和jumpCandidate。其中predType是该指令的分支类型，而jumpCandidate用判断了一个指令组中有可能跳转的那条指令的位置。
